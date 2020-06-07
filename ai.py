@@ -77,8 +77,8 @@ def test_A():
 # save mid-stage images
 
 def test_all():
-    todos=['forest']
-    # todos=['forest','mona_lisa','potala_palace','the_school_of_athens','xihu']
+    # todos=['forest']
+    todos=['forest','mona_lisa','potala_palace','the_school_of_athens','xihu']
     for todo in todos:
         print("restoring %s image" % todo)
         # create path
@@ -91,6 +91,7 @@ def test_all():
         # noise img
         noise_img_path = './samples/%s_noise.png' % todo
         noise_img = read_image(noise_img_path)
+        noise_img = normalization(noise_img)
         res_img = restore_image(noise_img)
         # 计算恢复图片与原始图片的误差
         print("恢复图片与原始图片的评估误差: ", compute_error(res_img, nor_img))
@@ -104,6 +105,7 @@ def test_all():
         # noise random img
         random_noise_img_path = './samples/%s_random_noise.png' % todo
         random_noise_img = read_image(random_noise_img_path)
+        random_noise_img = normalization(random_noise_img)
         res_img = restore_image(random_noise_img)
         # 计算恢复图片与原始图片的误差
         print("恢复图片与原始图片的评估误差: ", compute_error(res_img, nor_img))

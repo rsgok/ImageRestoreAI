@@ -218,6 +218,9 @@ def restore_image(noise_img, size=4):
     res_img[res_img > 1.0] = 1.0
     res_img[res_img < 0.0] = 0.0  
 
+    if noise_img.shape[2] == 1:
+        res_img = res_img.squeeze()
+
     # ---------------------------------------------------------------
 
     return res_img
